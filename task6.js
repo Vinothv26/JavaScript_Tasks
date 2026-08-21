@@ -88,129 +88,80 @@ let employees = [
     }
 ];
 
-/*
-Requirements
+/*Requirements
 1. Students must implement the following:
 Display all employees
-Use forEach().
-*/
+Use forEach().*/
 
-function AllEmployees(){
     employees.forEach(currentvalue=>{
         console.log(
             `ID: ${currentvalue.id}, Name: ${currentvalue.name},Department: ${currentvalue.department},Salary: ₹${currentvalue.salary}, Experience: ${currentvalue.experience} years, Skills : ${currentvalue.skills}`);
     });
-}
-AllEmployees();
 
-/*
-2. Find employees
+/*2. Find employees
 Find employees whose salary is greater than ₹40,000.
-Use filter().
-*/
+Use filter().*/
 
-function Filterdata(){
-    let filteFunction=employees.filter(ce=>ce.salary>=40000);
+    let filteFunction=employees.filter(ce=>ce.salary>40000);
     filteFunction.forEach(ce=>{
         console.log(`Name : ${ce.name}, Salary : ${ce.salary}`);
     });
-}
 
-Filterdata();
 
-/*
-3. Find a particular employee
+/*3. Find a particular employee
 Search employee using id.
-Use find().
-*/
+Use find().*/
 
-function FindUsingID(id){
-    let findUsingId = employees.find(cv=>cv.id===id);
+    let findUsingId = employees.find(cv=>cv.id===102);
     console.log(`ID: ${findUsingId.id}, Name: ${findUsingId.name},Department: ${findUsingId.department},Salary: ₹${findUsingId.salary}, Experience: ${findUsingId.experience} years, Skills : ${findUsingId.skills}`);
-}
 
-FindUsingID(102);
-
-/*
-4. Calculate total salary
+/*4. Calculate total salary
    - Calculate the total salary of all employees.
-   - Use reduce().
-*/
+   - Use reduce().*/
 
-function TotalSalary() {
-    let total = employees.reduce((total, employee) => {
-        return total + employee.salary;
+    let total = employees.reduce((total, ce) => {
+        return total + ce.salary;
     }, 0);
 
     console.log(`Total Salary : ₹${total}`);
-}
 
-TotalSalary();
-
-
-/*
-2. Check salary condition
+/*5. Check salary condition
    - Check whether at least one employee has salary above ₹1,00,000.
-   - Use some().
-*/
+   - Use some().*/
 
-function CheckHighSalary() {
-    let result = employees.some(employee => employee.salary > 100000);
+    let result = employees.some(ce => ce.salary > 100000);
 
     console.log(`Employee salary above ₹1,00,000 : ${result}`);
-}
 
-CheckHighSalary();
-
-
-/*
-3. Check experience
+/*6. Check experience
    - Check whether every employee has at least 1 year of experience.
-   - Use every().
-*/
+   - Use every().*/
 
-function CheckExperience() {
-    let result = employees.every(employee => employee.experience >= 1);
+    let result = employees.every(cv => cv.experience >= 1);
 
     console.log(`Every employee has at least 1 year experience : ${result}`);
-}
 
-CheckExperience();
-
-
-/*
-4. Sort employees
-   - Sort employees by salary from highest to lowest.
-*/
-
-function SortEmployees() {
+/* 7. Sort employees
+   - Sort employees by salary from highest to lowest. */
 
     let sortedEmployees = [...employees].sort((a, b) => {
         return b.salary - a.salary;
     });
 
-    sortedEmployees.forEach(employee => {
+    sortedEmployees.forEach(cv => {
         console.log(
-            `ID: ${employee.id}, Name: ${employee.name}, Salary: ₹${employee.salary}`
+            `ID: ${cv.id}, Name: ${cv.name}, Salary: ₹${cv.salary}`
         );
     });
-}
 
-SortEmployees();
-
-
-/*
-5. Array manipulation
+/*8. Array manipulation
 
    - Add a new employee using push().
    - Remove the last employee using pop().
    - Add an employee at the beginning using unshift().
-   - Remove the first employee using shift().
-*/
+   - Remove the first employee using shift(). */
 
-function ArrayManipulation() {
-
-    // Add employee using push()
+ // Add employee using push()
 
     let newEmployee = {
         id: 109,
@@ -224,16 +175,14 @@ function ArrayManipulation() {
     employees.push(newEmployee);
 
     console.log("After Push:");
-    console.log(employees);
-
+    employees.forEach(cv=>{console.log(cv.id, cv.name)});
 
     // Remove last employee using pop()
 
     let removedLast = employees.pop();
 
     console.log("Removed Last Employee:");
-    console.log(removedLast);
-
+    console.log(removedLast.id, removedLast.name);
 
     // Add employee at beginning using unshift()
 
@@ -249,83 +198,55 @@ function ArrayManipulation() {
     employees.unshift(firstEmployee);
 
     console.log("After Unshift:");
-    console.log(employees);
-
+    employees.forEach(cv=>{console.log(cv.id, cv.name)});
 
     // Remove first employee using shift()
 
     let removedFirst = employees.shift();
 
     console.log("Removed First Employee:");
-    console.log(removedFirst);
-}
+    console.log(removedFirst.id, removedFirst.name);
 
-ArrayManipulation();
-
-
-/*
-6. Destructuring
+/*9. Destructuring
 
    - Use object destructuring to extract:
      name
      department
      salary
 
-   - Use array destructuring for employee's skills.
-*/
+   - Use array destructuring for employee's skills.*/
 
-function DestructuringExample() {
+    //Object destructuring
 
-    let employee = employees[0];
-
-    // Object destructuring
-
-    let { name, department, salary } = employee;
+    let { name, department, salary } = employees[0];
 
     console.log(`Name : ${name}`);
     console.log(`Department : ${department}`);
     console.log(`Salary : ₹${salary}`);
 
-
     // Array destructuring
 
-    let [skill1, skill2, skill3] = employee.skills;
+    let [skill1, skill2, skill3] = employees[0].skills;
 
     console.log(`Skill 1 : ${skill1}`);
     console.log(`Skill 2 : ${skill2}`);
     console.log(`Skill 3 : ${skill3}`);
-}
 
-DestructuringExample();
-
-
-/*
-7. Spread operator
+/*10. Spread operator
 
    - Create a new employee array using spread operator
-     without directly modifying the original array.
-*/
+     without directly modifying the original array.*/
 
-function SpreadExample() {
-
-    let newEmployeeArray = [...employees];
+    let newArray = [...employees];
 
     console.log("Original Employee Array:");
-    console.log(employees);
-
+    employees.forEach(cv=>{console.log(cv.id, cv.name)});
     console.log("New Employee Array:");
-    console.log(newEmployeeArray);
-}
+    newArray.forEach(cv=>{console.log(cv.id, cv.name)});
 
-SpreadExample();
-
-
-/*
-8. Rest operator
-
+/*11. Rest operator
    - Create a function that accepts an employee name
-     and multiple skill values using rest operator.
-*/
+     and multiple skill values using rest operator.*/
 
 function AddSkills(employeeName, ...skills) {
 
@@ -333,42 +254,42 @@ function AddSkills(employeeName, ...skills) {
     console.log(`Skills : ${skills}`);
 }
 
-AddSkills(
-    "Arun",
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "React"
-);
+AddSkills("Arun","HTML","CSS","JavaScript","React");
 
-
-/*
-9. Functions
+/* 12. Functions
 
    - Add employee
    - Delete employee
    - Search employee
    - Calculate total salary
-   - Display employees
-*/
+   - Display employees*/
 
+//Add Employee
 
-// Add Employee
+    let newEmployee = {
+        id: 109,
+        name: "Suresh",
+        department: "IT",
+        salary: 52000,
+        experience: 3,
+        skills: ["JavaScript", "SQL", "Angular"]
+    };
 
-function AddEmployee(employee) {
+function AddEmployee(newEmployee) {
 
-    employees.push(employee);
+    employees.push(newEmployee);
 
     console.log("Employee Added Successfully");
-    console.log(employee);
+    console.log(employees);
 }
+AddEmployee();
 
 
 // Delete Employee
 
 function DeleteEmployee(id) {
 
-    let index = employees.findIndex(employee => employee.id === id);
+    let index = employees.findIndex(cv => cv.id === id);
 
     if (index !== -1) {
 
@@ -383,18 +304,18 @@ function DeleteEmployee(id) {
 
     }
 }
-
+DeleteEmployee(108);
 
 // Search Employee
 
 function SearchEmployee(id) {
 
-    let employee = employees.find(employee => employee.id === id);
+    let searchedEmployee = employees.find(cv => cv.id === id);
 
-    if (employee) {
+    if (searchedEmployee) {
 
         console.log(
-            `ID: ${employee.id}, Name: ${employee.name}, Department: ${employee.department}, Salary: ₹${employee.salary}`
+            `ID: ${searchedEmployee.id}, Name: ${searchedEmployee.name}, Department: ${searchedEmployee.department}, Salary: ₹${searchedEmployee.salary}`
         );
 
     } else {
@@ -403,98 +324,62 @@ function SearchEmployee(id) {
     }
 }
 
+SearchEmployee(108);
+
 
 // Calculate Total Salary
 
 function CalculateTotalSalary() {
 
-    let total = employees.reduce((total, employee) => {
-        return total + employee.salary;
+    let totalSal = employees.reduce((total, cv) => {
+        return total + cv.salary;
     }, 0);
 
-    console.log(`Total Salary : ₹${total}`);
+    console.log(`Total Salary : ₹${totalSal}`);
 }
 
+CalculateTotalSalary();
 
 // Display Employees
 
 function DisplayEmployees() {
 
-    employees.forEach(employee => {
-
+employees.forEach(currentvalue=>{
         console.log(
-            `ID: ${employee.id}, Name: ${employee.name}, Department: ${employee.department}, Salary: ₹${employee.salary}`
-        );
-
+            `ID: ${currentvalue.id}, Name: ${currentvalue.name},Department: ${currentvalue.department},Salary: ₹${currentvalue.salary}, Experience: ${currentvalue.experience} years, Skills : ${currentvalue.skills}`);
     });
 }
 
-
-// Calling functions
-
-let employee109 = {
-    id: 109,
-    name: "Suresh",
-    department: "IT",
-    salary: 52000,
-    experience: 3,
-    skills: ["JavaScript", "SQL", "Angular"]
-};
-
-AddEmployee(employee109);
-
-SearchEmployee(109);
-
-CalculateTotalSalary();
-
 DisplayEmployees();
 
-DeleteEmployee(109);
-
-
-/*
-10. Conditional statements
+/* 13. Conditional statements
 
    Salary Category:
 
    ₹0 – ₹30,000       → Junior
    ₹30,001 – ₹60,000  → Mid Level
-   Above ₹60,000      → Senior
-*/
+   Above ₹60,000      → Senior*/
 
 function SalaryCategory() {
 
-    employees.forEach(employee => {
-
-        if (employee.salary >= 0 && employee.salary <= 30000) {
-
-            console.log(`${employee.name} : Junior`);
-
-        }
-        else if (employee.salary >= 30001 && employee.salary <= 60000) {
-
-            console.log(`${employee.name} : Mid Level`);
-
-        }
-        else {
-
-            console.log(`${employee.name} : Senior`);
-
-        }
-
+    employees.forEach((cv) => {
+      if (cv.salary >= 0 && cv.salary <= 30000) {
+        console.log(`${cv.name} : Junior`);
+      } else if (cv.salary >= 30001 && cv.salary <= 60000) {
+        console.log(`${cv.name} : Mid Level`);
+      } else {
+        console.log(`${cv.name} : Senior`);
+      }
     });
 }
 
 SalaryCategory();
 
-
-/*
-11. Date
+/* 14. Date
 
    - Add joiningDate to every employee.
    - Display joining year using getFullYear().
-   - Display joining month using getMonth().
-*/
+   - Display joining month using getMonth(). */
 
 employees.forEach((employee, index) => {
 
@@ -509,7 +394,6 @@ function DisplayJoiningDate() {
 
         let year = employee.joiningDate.getFullYear();
 
-        // getMonth() returns 0 for January and 11 for December
         let month = employee.joiningDate.getMonth();
 
         console.log(
@@ -522,18 +406,16 @@ function DisplayJoiningDate() {
 DisplayJoiningDate();
 
 
-/*
-12. User Input
+/* 15. User Input
 
    - Use prompt() to ask the user for employee ID.
-   - Search and display employee details.
-*/
+   - Search and display employee details. */
 
 function SearchEmployeeUsingPrompt() {
 
     let id = Number(prompt("Enter Employee ID:"));
 
-    let employee = employees.find(employee => employee.id === id);
+    let employee = employees.find(cv => cv.id === id);
 
     if (employee) {
 
@@ -571,10 +453,10 @@ Menu-driven Employee Management System
 
 function DisplayAllEmployees() {
 
-    employees.forEach(employee => {
+    employees.forEach(cv => {
 
         console.log(
-            `ID: ${employee.id}, Name: ${employee.name}, Department: ${employee.department}, Salary: ₹${employee.salary}, Experience: ${employee.experience} years`
+            `ID: ${cv.id}, Name: ${cv.name}, Department: ${cv.department}, Salary: ₹${cv.salary}, Experience: ${cv.experience} years`
         );
 
     });
